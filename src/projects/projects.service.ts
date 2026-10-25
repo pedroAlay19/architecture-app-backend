@@ -32,8 +32,7 @@ export class ProjectsService {
     try {
 
       const saved = await this.projectRepository.save(project);
-      const {contractor, ...result} = saved
-      return result;
+      return {id: saved.id};
 
     } catch (error) {
       this.logger.error(error);
