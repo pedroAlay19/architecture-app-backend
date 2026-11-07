@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "../../auth/entities/user.entity";
+import { BudgetCategory } from "../../budget/entities/budget-category.entity";
 
 export enum ProjectStatus {
     IN_PROGRESS='in_progress',
@@ -44,5 +45,10 @@ export class Project {
         () => User,
         (user) => user.projects,
     )
-    contractor: User
+    contractor: User;
+
+    @OneToMany(() => BudgetCategory, (category) => category.project, {
+        cascade: ['insert']
+    })
+    categories: BudgetCategory[];
 }

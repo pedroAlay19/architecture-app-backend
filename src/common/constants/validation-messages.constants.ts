@@ -1,0 +1,18 @@
+export const CONSTRAINT_MESSAGES: Record<string, (field: string) => string> = {
+  isNotEmpty: (f) => `${f} no puede estar vacío`,
+  isString: (f) => `${f} debe ser un texto`,
+  isEmail: (f) => `${f} debe ser un correo válido`,
+  isInt: (f) => `${f} debe ser un número entero`,
+  isNumber: (f) => `${f} debe ser un número`,
+  isPositive: (f) => `${f} debe ser un número positivo`,
+  min: (f) => `${f} es menor al valor mínimo permitido`,
+  max: (f) => `${f} supera el valor máximo permitido`,
+  minLength: (f) => `${f} es demasiado corto`,
+  maxLength: (f) => `${f} es demasiado largo`,
+  isIn: (f) => `${f} tiene un valor no permitido`,
+  isArray: (f) => `${f} debe ser una lista`,
+  arrayMinSize: (f) => `${f} debe tener al menos un elemento`,
+  arrayMaxSize: (f) => `${f} tiene demasiados elementos`,
+  isDateString: (f) => `${f} debe ser una fecha válida`,
+  whitelistValidation: (f) => `${f} no es una propiedad permitida`,
+};

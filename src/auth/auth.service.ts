@@ -2,13 +2,11 @@ import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
-
 import * as bcrypt from 'bcrypt'
-
 import { CreateUserDto, LoginUserDto } from './dto';
-import e from 'express';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { JwtService } from '@nestjs/jwt';
+import { MESSAGES } from '../common/constants/messages.constants';
 
 @Injectable()
 export class AuthService {
@@ -50,7 +48,7 @@ export class AuthService {
       });
 
       if (!user || !bcrypt.compareSync(password, user.password))
-        throw new UnauthorizedException('Invalid credentials');
+        throw new UnauthorizedException(MESSAGES.AUTH.INVALID_CREDENTIALS);
 
       const { password: _, ...safeUser } = user;
 
@@ -67,9 +65,8 @@ export class AuthService {
 
   private handleDBError(error: any): never {
     if (error.code = '23505')
-      throw new BadRequestException(error.detail);
+      throw new BadRequestException(MESSAGES.AUTH.EMAIL_ALREADY_EXISTS);
 
-    console.log(error)
-    throw new BadRequestException('Please check server logs');
+    throw new BadRequestException('Error interno al procesar la solicitud');
   }
 }
