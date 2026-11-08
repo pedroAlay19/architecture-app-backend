@@ -1,10 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, ValueTransformer } from "typeorm";
 import { BudgetCategory } from "./budget-category.entity";
-
-export const decimalTransformer: ValueTransformer = {
-  to: (value?: number | null) => value, // Al guardar
-  from: (value?: string | null) => (value == null ? value : parseFloat(value)), // Convierte el valor recibido
-};
+import { decimalTransformer } from "../../common/transformers/decimal.transformer";
 
 @Entity('budget_items')
 export class BudgetItem {

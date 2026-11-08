@@ -64,7 +64,7 @@ export class AuthService {
   }
 
   private handleDBError(error: any): never {
-    if (error.code = '23505')
+    if (error.code == '23505')
       throw new BadRequestException(MESSAGES.AUTH.EMAIL_ALREADY_EXISTS);
 
     throw new BadRequestException('Error interno al procesar la solicitud');

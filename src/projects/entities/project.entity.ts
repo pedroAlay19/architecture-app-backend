@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "../../auth/entities/user.entity";
 import { BudgetCategory } from "../../budget/entities/budget-category.entity";
+import { decimalTransformer } from "../../common/transformers/decimal.transformer";
 
 export enum ProjectStatus {
     IN_PROGRESS='in_progress',
@@ -31,7 +32,7 @@ export class Project {
     estimatedEndDate: string;
 
 
-    @Column({ type: 'decimal', precision: 14, scale: 2 })
+    @Column({ type: 'decimal', precision: 14, scale: 2, transformer: decimalTransformer })
     totalBudget: number;
 
 
