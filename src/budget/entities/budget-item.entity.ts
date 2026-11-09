@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, ValueTransformer } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { BudgetCategory } from "./budget-category.entity";
 import { decimalTransformer } from "../../common/transformers/decimal.transformer";
 
@@ -16,10 +16,10 @@ export class BudgetItem {
     @Column('text')
     unit: string;
 
-    @Column({type: 'decimal', precision: 14, scale: 4, transformer: decimalTransformer})
+    @Column({type: 'decimal', precision: 14, scale: 2, transformer: decimalTransformer})
     quantity: number;
 
-    @Column({type: 'decimal', precision: 14, scale: 4, transformer: decimalTransformer})
+    @Column({type: 'decimal', precision: 14, scale: 2, transformer: decimalTransformer})
     unitPrice: number;
 
     @Column('int')
